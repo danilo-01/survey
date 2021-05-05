@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content%}
+<form action="/answer/{{id}}" method="POST">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <p class="flash">{{message}}</p>
+            {% endfor %}
+      {% endif %}
+    {% endwith %}
+<p>{{ question }}</p>
+
+
+    {% for choice in choices %}
+    <input required type="radio" id="{{ choice }}" name="answer" value="{{ choice }}">
+    <label for="{{ choice }}">{{ choice }}</label><br>
+    {% endfor %}
+
+<button type="submit">Submit</button>
+</form>
+{% endblock %}
